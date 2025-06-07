@@ -1,6 +1,6 @@
 {
   "name": "neukit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Neutralino CLI tools",
   "bin": {
     "neukit": "./dist/index.js"
