@@ -1,0 +1,33 @@
+{
+  "name": "neukit",
+  "version": "0.0.1",
+  "description": "Neutralino CLI tools",
+  "bin": {
+    "neukit": "./bin/index.ts"
+  },
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run ./bin/index.ts",
+    "release:patch": "npm version patch && git push --follow-tags && npm publish",
+    "release:minor": "npm version minor && git push --follow-tags && npm publish",
+    "releas:emajor": "npm version major && git push --follow-tags && npm publish"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "8colors": "^1.0.2",
+    "@types/degit": "^2.8.6",
+    "@types/figlet": "^1.7.0",
+    "commander": "^14.0.0",
+    "degit": "^2.8.4",
+    "enquirer": "^2.4.1",
+    "figlet": "^1.8.1",
+    "ora": "^8.2.0",
+    "png2icons": "^2.0.1"
+  }
+}
