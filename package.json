@@ -6,7 +6,6 @@
     "neukit": "./bin/index.ts"
   },
   "type": "module",
-  "private": true,
   "scripts": {
     "start": "bun run ./bin/index.ts",
     "release:patch": "npm version patch && git push --follow-tags && npm publish",
