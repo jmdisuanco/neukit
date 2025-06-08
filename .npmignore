@@ -1,0 +1,50 @@
+bin/
+src/
+# Test files and directories
+test/
+tests/
+__tests__/
+*.spec.*
+*.test.*
+
+# Intermediate build outputs
+out/
+
+# Local package archives
+*.tgz
+
+# Code coverage
+coverage/
+*.lcov
+
+# Logs
+logs/
+*.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# Environment variable files
+.env
+.env.*
+!.env.example
+
+# Caches and build artifacts
+.eslintcache
+.cache/
+*.tsbuildinfo
+
+# IDE and editor specific files
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Development configuration files (if not needed by consumers)
+tsconfig.json
+jest.config.js
+webpack.config.js
+.eslintrc.js
+
+# Git files
+.gitignore
