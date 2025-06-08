@@ -46,10 +46,17 @@ const paths: paths = {
 const title = figlet.textSync('NeuKit');
 
 console.log(horizontalGradient(title))
-console.log(gradient("\u00a9 2025 JM Disuanco"))
+console.log(c.yellow(`                 Version ${pkg.version}\n`))
 
 
-const runPrepackage = async (arch: BUILDTARGET) => {
+const runPrepackage = async (arch: BUILDTARGET, verbose: boolean) => {
+    if (!await fs.exists(`${wd}/package.json`)) {
+        if (verbose) {
+            console.log(c.yellow(`No package.json found in ${wd}. Skipping prepackage scripts.`));
+        }
+        return;
+    }
+
     const project = await Bun.file(`${wd}/package.json`).json();
     const scripts = Object.keys(project.scripts);
     const prepackageScript = `neukit:prepackage`
@@ -59,6 +66,7 @@ const runPrepackage = async (arch: BUILDTARGET) => {
 }
 
 
+
 program
     .version(pkg.version)
     .description(pkg.description)
@@ -66,7 +74,7 @@ program
     .option("-T --target, <type>", "mac | linux | win")
     .option('-v, --verbose', 'Enable verbose mode')
     .action(async (options: options) => {
-        await runPrepackage(options.target as BUILDTARGET)
+        options.pack && await runPrepackage(options.target as BUILDTARGET, options.verbose)
         switch (true) {
             case options.pack: {
                 projectRequired(async (config) => {
