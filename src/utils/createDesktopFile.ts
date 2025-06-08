@@ -1,4 +1,4 @@
-import type { NUETRALINO_CONFIG } from "../../types"
+import type { NEUKIT_CONFIG } from "../../types"
 
 
 export type LinuxScaffoldPayload = {
@@ -13,7 +13,7 @@ export type LinuxScaffoldPayload = {
 }
 
 
-export const prepareEntries = (config: NUETRALINO_CONFIG, appExec: string) => {
+export const prepareEntries = (config: NEUKIT_CONFIG, appExec: string) => {
     if (!config.buildScript?.linux) return undefined
 
     const payload: LinuxScaffoldPayload = {

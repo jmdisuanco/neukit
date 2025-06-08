@@ -50,6 +50,7 @@ console.log(c.yellow(`                 Version ${pkg.version}\n`))
 
 
 const runPrepackage = async (arch: BUILDTARGET, verbose: boolean) => {
+
     if (!await fs.exists(`${wd}/package.json`)) {
         if (verbose) {
             console.log(c.yellow(`No package.json found in ${wd}. Skipping prepackage scripts.`));

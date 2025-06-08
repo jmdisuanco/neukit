@@ -9,6 +9,7 @@ export type CreateNeuKitOptions = {
     appId: string,
     targetOS: string[],
     author?: string,
+    companyName: string,
     license?: string,
     description?: string,
     template: "full" | "base",
@@ -60,6 +61,11 @@ export const createNeuKitForm = async (projectName: string, options: createOptio
             type: 'input',
             message: 'Author',
             name: 'author'
+        },
+        {
+            type: 'input',
+            message: 'Company Name : (Your name if individual)',
+            name: 'companyName'
         },
         {
             type: 'input',

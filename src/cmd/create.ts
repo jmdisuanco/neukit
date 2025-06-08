@@ -1,4 +1,4 @@
-import type { createOptions, NUETRALINO_CONFIG, OSBuild } from "../../types";
+import type { createOptions, NEUKIT_CONFIG, OSBuild } from "../../types";
 import * as degit from 'degit';
 import { createNeuKitForm } from "../form/neukitCreate";
 import fs from 'fs';
@@ -67,10 +67,12 @@ export const createNeuKit = async (projectName: string, options: createOptions) 
         spinner.succeed('package.json configured!');
 
         spinner = ora('Setting Neutralino config...').start();
-        const config: NUETRALINO_CONFIG = await Bun.file(`${projectPath}/neutralino.config.json`).json();
+        const config: NEUKIT_CONFIG = await Bun.file(`${projectPath}/neutralino.config.json`).json();
 
         config.applicationId = payload.appId;
         config.version = payload.version;
+        config.companyName = payload.companyName! || 'NO_COMPANY_SET';
+        config.author = payload.author || 'NO_AUTHOR_SET';
         config.modes.window.title = payload.windowTitle;
 
         if (config.buildScript) {

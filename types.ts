@@ -50,9 +50,11 @@ export type OSBuild = {
     appIconPath?: string,
 };
 
-export type NUETRALINO_CONFIG = {
+export type NEUKIT_CONFIG = {
     applicationId: string,
     version: string,
+    author?: string,
+    companyName?: string,
     defaultMode: string,
     documentRoot: string,
     port: number,

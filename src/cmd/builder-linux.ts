@@ -1,11 +1,11 @@
-import type { BUILDTARGET, NUETRALINO_CONFIG, paths } from "../../types"
+import type { BUILDTARGET, NEUKIT_CONFIG, paths } from "../../types"
 import fs from 'fs'
 import * as c from '8colors'
 import ora from 'ora';
 import { createLinuxInstaller } from "../utils/createInstall";
 import { createDesktopFile, prepareEntries } from "../utils/createDesktopFile";
 
-export const buildLinux = async (config: NUETRALINO_CONFIG, paths: paths, target: BUILDTARGET, verbose: boolean) => {
+export const buildLinux = async (config: NEUKIT_CONFIG, paths: paths, target: BUILDTARGET, verbose: boolean) => {
     const { projectRoot, wd } = paths;
     const out = `${wd}/build`
 

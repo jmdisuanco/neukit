@@ -1,11 +1,11 @@
-import type { BUILDTARGET, NUETRALINO_CONFIG, paths } from "../../types"
+import type { BUILDTARGET, NEUKIT_CONFIG, paths } from "../../types"
 import fs from 'fs'
 import * as c from '8colors'
 import ora from 'ora';
 import { generatePlist } from "./generatePlist";
 import png2icons from 'png2icons';
 
-export const buildMac = async (config: NUETRALINO_CONFIG, paths: paths, target: BUILDTARGET, verbose: boolean) => {
+export const buildMac = async (config: NEUKIT_CONFIG, paths: paths, target: BUILDTARGET, verbose: boolean) => {
     const { projectRoot, wd } = paths;
     const out = `${wd}/build`
 
