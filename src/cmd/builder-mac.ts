@@ -61,7 +61,7 @@ export const buildMac = async (config: NEUKIT_CONFIG, paths: paths, target: BUIL
 
         spinner.info('cloning Application Package Template')
         const packageArchDir = `${out}/${target}/${target}_${arch}`
-        const packageDir = `${packageArchDir}/${mac.appBundleName}.app`
+        const packageDir = `${packageArchDir}/${mac.appName}.app`
         fs.cpSync(`${projectRoot}/templates/_app_scaffolds/mac/myapp.app`, `${packageDir}`, { recursive: true })
 
         fs.cpSync(binFile, `${packageDir}/Contents/MacOS/main`);
@@ -75,7 +75,7 @@ export const buildMac = async (config: NEUKIT_CONFIG, paths: paths, target: BUIL
             for (const extension of extensions) {
                 try {
                     fs.mkdirSync(`${extensionsDirectory}/${extension}`, { recursive: true })
-                    fs.cpSync(`${distDir}/${binaryName}/extensions/${extension}/start-mac_${arch}`, `${extensionsDirectory}/${extension}/start-mac`, { recursive: true })
+                    fs.cpSync(`${distDir}/${binaryName}/extensions/${extension}/start-mac_${arch}`, `${extensionsDirectory}/${extension}/start`, { recursive: true })
                 } catch (error: Error | any) {
                     console.log(error.message)
                     console.log(c.red(`‼️  Extension start-mac_${arch} not found`))
@@ -89,6 +89,8 @@ export const buildMac = async (config: NEUKIT_CONFIG, paths: paths, target: BUIL
         const input = fs.readFileSync(`${wd}/assets/icon.png`);
         const icns = png2icons.createICNS(input, png2icons.BEZIER, 20)
         icns && fs.writeFileSync(`${packageDir}/Contents/Resources/icon.icns`, icns);
+        spinner.start("🗜️ Creating DMG")
+        Bun.spawnSync(["bun", "x", "create-dmg", `${packageDir}`, packageArchDir])
         spinner.succeed(`📦 Package ${target}_${arch} now available at ${packageArchDir}`)
     }
 }
