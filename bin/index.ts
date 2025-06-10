@@ -12,12 +12,13 @@ import { horizontalGradient, gradient } from "../src/utils/gradient";
 import { alertError } from '../src/utils/alert';
 import { createNeuKit } from "../src/cmd/create";
 
-const neukitBanner =await  Bun.file("./neukit.txt").text();
 
- const binPath = path.dirname(fileURLToPath(import.meta.url));
+const binPath = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(binPath, '..');
 const packageJsonPath = path.join(projectRoot, 'package.json');
+const bannerPath = path.join(projectRoot, 'neukit.txt');
 const pkg = await Bun.file(packageJsonPath).json();
+const neukitBanner =await  Bun.file(bannerPath).text();
 const wd = process.cwd();
 
 function noProject() {
