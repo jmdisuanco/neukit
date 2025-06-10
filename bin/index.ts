@@ -1,10 +1,9 @@
 #!/usr/bin/env bun
 import { program } from "commander";
-import { BUILDTARGET, type createOptions, type NUETRALINO_CONFIG, type options, type paths } from "../types";
+import { BUILDTARGET, type createOptions, type  NEUKIT_CONFIG, type options, type paths } from "../types";
 import * as c from '8colors'
 import path from 'path';
 import { fileURLToPath } from 'url';
-import figlet from "figlet";
 import fs from 'fs/promises';
 import { buildMac } from "../src/cmd/builder-mac";
 import { buildWindows } from "../src/cmd/builder-win";
@@ -13,7 +12,11 @@ import { horizontalGradient, gradient } from "../src/utils/gradient";
 import { alertError } from '../src/utils/alert';
 import { createNeuKit } from "../src/cmd/create";
 
-
+const neukitBanner = `  _   _            _  ___ _   
+ | \ | | ___ _   _| |/ (_) |_ 
+ |  \| |/ _ \ | | | ' /| | __|
+ | |\  |  __/ |_| | . \| | |_ 
+ |_| \_|\___|\__,_|_|\_\_|\__|`
 const binPath = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(binPath, '..');
 const packageJsonPath = path.join(projectRoot, 'package.json');
@@ -27,11 +30,11 @@ function noProject() {
     console.log(tip)
 }
 
-async function projectRequired(callback: (config: NUETRALINO_CONFIG) => void) {
+async function projectRequired(callback: (config: NEUKIT_CONFIG) => void) {
     const configPath = path.join(wd, 'neutralino.config.json');
     const configExists = await fs.exists(configPath);
     if (configExists) {
-        const config: NUETRALINO_CONFIG = await Bun.file(configPath).json();
+        const config: NEUKIT_CONFIG = await Bun.file(configPath).json();
         console.log("App ID :", c.green(config.applicationId))
         callback && callback(config)
     } else {
@@ -43,9 +46,7 @@ const paths: paths = {
     projectRoot, wd
 }
 
-const title = figlet.textSync('NeuKit');
-
-console.log(horizontalGradient(title))
+console.log(horizontalGradient(neukitBanner))
 console.log(c.yellow(`                 Version ${pkg.version}\n`))
 
 

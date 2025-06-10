@@ -30,7 +30,6 @@
     "commander": "14.0.0",
     "degit": "2.8.4",
     "enquirer": "2.4.1",
-    "figlet": "1.8.1",
     "ora": "8.2.0",
     "png2icons": "2.0.1"
   }
