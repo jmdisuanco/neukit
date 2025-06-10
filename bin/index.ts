@@ -12,12 +12,9 @@ import { horizontalGradient, gradient } from "../src/utils/gradient";
 import { alertError } from '../src/utils/alert';
 import { createNeuKit } from "../src/cmd/create";
 
-const neukitBanner = `  _   _            _  ___ _   
- | \ | | ___ _   _| |/ (_) |_ 
- |  \| |/ _ \ | | | ' /| | __|
- | |\  |  __/ |_| | . \| | |_ 
- |_| \_|\___|\__,_|_|\_\_|\__|`
-const binPath = path.dirname(fileURLToPath(import.meta.url));
+const neukitBanner =await  Bun.file("./neukit.txt").text();
+
+ const binPath = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(binPath, '..');
 const packageJsonPath = path.join(projectRoot, 'package.json');
 const pkg = await Bun.file(packageJsonPath).json();
@@ -47,6 +44,7 @@ const paths: paths = {
 }
 
 console.log(horizontalGradient(neukitBanner))
+ 
 console.log(c.yellow(`                 Version ${pkg.version}\n`))
 
 
