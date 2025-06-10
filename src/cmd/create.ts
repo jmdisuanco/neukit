@@ -105,7 +105,7 @@ export const createNeuKit = async (projectName: string, options: createOptions) 
         spinner.succeed('Dependencies installed.');
 
         spinner = ora('Updating Neutralino').start();
-        Bun.spawnSync(['neu', 'update'], { cwd: projectPath });
+        Bun.spawnSync(['bun','run', 'neu:update'], { cwd: projectPath });
         spinner.succeed('Neutralino updated.');
         const neukit = horizontalGradient('NeuKit')
 
